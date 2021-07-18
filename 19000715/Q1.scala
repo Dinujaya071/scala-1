@@ -1,12 +1,21 @@
-object far {
+
+
+
+//def prime(n: Int): Boolean = {
+  
+  
+ // }
+
+ object Prime{ 
+def prime(n: Int): Boolean = {
+    def PrimeUntil(t: Int): Boolean =
+      if (t <= 1) true
+      else n % t != 0 && PrimeUntil(t-1)
+
+    PrimeUntil(n / 2)
+}
 
 def main(args:Array[String]) {
-println("Farenhiete temperature : "+con(35));
+  println(prime(13));
 }
-
-def con( c:Double) : Double = {
-var f:Double = 0
-f = c * 1.8000 + 32.00
-return f
 }
-}	

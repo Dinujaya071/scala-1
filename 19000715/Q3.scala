@@ -1,12 +1,13 @@
-object book {
 
-	def main(args:Array[String]) {
-		println("Total cost : "+cost(60));
-}
 
-	def cost( q:Double) : Double = {
-		var total:Double = 0
-		total = (q*24.95+q * 24.95*24/100)+(q-50)*0.75+ 50*3
-		return total
+object Addition {
+  def sum(n :Int ):Int = {
+    if(n==1) 1
+    else  
+     n + sum(n-1);
+     
+  }
+def main(args :Array[String]) {
+    println(sum(100))
+  }
 }
-}	
