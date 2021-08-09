@@ -1,0 +1,58 @@
+
+
+import scala.util.control.Breaks._
+  object ceaser{ 
+  val alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	
+	
+  def func(){
+	
+	val text1 = scala.io.StdIn.readLine("Enter The message : ")
+	val text2 = text1.map( (a: Char) => { 
+
+		
+		val n = alphabet.indexOf(a.toUpper)
+	
+		if (n == -1){
+			a
+		}
+		else{
+			alphabet((n + 3) % alphabet.size)
+			} 
+	})
+    
+	println(text2)
+
+   }
+   def fun2(){
+    val text3 = scala.io.StdIn.readLine("Enter the message :  ")
+    val text4 = text3.map( (b: Char) =>{
+       val n = alphabet.indexOf(b.toUpper)
+     if (n == -1)
+			b
+		else
+		alphabet(((n - 3)+26) % alphabet.size)
+			
+	})
+    println(text4)
+    }
+   def main(args : Array[String]){
+     var choice =0
+     println("Make your choice: \n 1. Encryption \n 2. Decryption \n 3. Exit")
+     do{
+     var choice = (scala.io.StdIn.readLine("Choice: ").toInt)
+     
+     if(choice ==1)
+       func
+     
+     if(choice ==2)
+       fun2
+      if(choice==3){
+       println("Escaped")
+       break
+       }
+     
+     }while(choice!= 3)
+       
+   }
+}
