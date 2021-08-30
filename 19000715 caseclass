@@ -1,0 +1,42 @@
+import math.{ sqrt, pow }
+case class  c(a:Int , b:Int)
+object cc{
+  
+  var x1 =10
+  var x2 =20
+  var y1 = 12
+  var y2 =15
+  var p = c(x1,y1)
+   var q =c(x2,y2)
+  def add(){
+    
+    println(p.a+q.a , p.b+q.a)
+  }
+  def dista{
+   
+    println("Distace: "+sqrt(pow(p.a-p.b,2) +pow(q.a-q.b,2)));
+  }
+  def move{
+    
+    var e=1;
+    var f=2;
+    println("before move:  " + (p.a,q.b))
+    println("After move : "+(p.a - e ,q.b-f))
+  }
+  def invert{
+     
+     var t= p.a
+     var e =p.b
+     println("before swap :  " + p.a,q.b)
+     println(e,t)
+  }
+      
+  def main(args:Array[String]){
+    println(add);
+     println (dista);
+     println(move);
+     println(invert);
+  }
+    
+  
+  }
