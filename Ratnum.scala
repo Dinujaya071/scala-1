@@ -1,6 +1,6 @@
 
 
-class Ratnum( n:Int , a:Int ) {
+class Rational( n:Int , a:Int ) {
 
     require(a>0 , "a cannot be negative")
 
