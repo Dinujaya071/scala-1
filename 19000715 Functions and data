@@ -1,22 +1,46 @@
-object Acc{
-    
-    val NIC : String = ("992245751v")
-    
-    val accnum : Int = 9965645
-    var balance : Double =2500
+object bank {
 
-    def withdraw( a : Double ) =  this.balance -= a{
-    return balance;
-    }
-    def deposit ( a : Double ) = this.balance += a
+  class account(NIC:String, AccNo:Int, bal:Int){
 
-    def transfer( a : Double ,that : Acc ): Unit = {
-        this.balance =  this.balance - a
-        that.balance = that.balance + a
+    def nic = NIC
+    def  acc = AccNo
+    var balance = bal
+
+    def transfer(a:account, amount:Int) = {
+      this.balance = this.balance-amount
+      a.balance = a.balance+amount
     }
 
+    def +(a:account) = new account(nic, acc, this.balance + a.balance)
 
-    @Override
-    override def toString() : String = "NIC : " + this.NIC + "\n Account Number : " + this.accnum + "\n Balance : " + this.balance
-    
+    def <(n:Int) = if(this.balance < n) true else false
+
+    def interest:Double = if(balance > 0) this.balance*105/100 else this.balance*110/100
+
+    override def toString = ""+balance
+
+  }
+
+  def main(args: Array[String]): Unit = {
+
+    var a1 = new account("456565v", 1234, 5000)
+    var a2 = new account("344545v", 2567, 2500)
+    var a3 = new account("454545v", 3235, -200)
+    var a4 = new account("232545v", 3213, -100)
+    var a5 = new account("738473v", 6546, -500)
+    var a6 = new account("545455v", 3215, 1000)
+    var bank:List[account]=List(a1, a2,a3,a4,a5,a6)
+
+    val tBalance=(b:List[account])=> b.reduce((x,y)=>x+y)
+    val fBalance=(b:List[account])=> b.map(_.interest)
+    val negative = (b:List[account])=> b.filter(x=>x<0)
+
+    println("total balance : " + tBalance(bank))
+    println("Negative balance = " + negative(bank))
+    println("final balances of accounts : "+fBalance(bank))
+    println("transfering 1000 a1 to a5")
+    a1.transfer(a5, 1000)
+    println("Final balances of accounts : "+fBalance(bank))
+  }
+
 }
