@@ -1,44 +1,44 @@
 
 
-class Rational( n:Int , a:Int ) {
+object ratnum{
 
-    require(a>0 , "a cannot be negative")
+  class rational(n:Int, d:Int){
 
-    private def gcd( x:Int , y:Int ):Int = {
-        if ( y == 0 ) x
-        else if ( y > x ) gcd( y , x )
-        else gcd( y, x%y )
-    }
+    require(d>0) 
+
+    def numor = n/math.abs(gcd(n,d))
+
+    def denom = d/math.abs(gcd(n,d))
+
+    def this(n:Int) = this(n, 1)
+
+    def gcd(a:Int, b:Int):Int = if(b == 0) a else gcd(b, a%b)
+
+    def +(r:rational) = new rational((this.numor*r.denom) + (r.numor*this.denom), this.denom*r.denom)
+
+    def neg = new rational(-numor, denom)
+
+    def -(r:rational) = this + r.neg
+
+    override def toString = numor+"/"+denom
+  }
+
+  def main(args: Array[String]): Unit = {
 
 
-    private val b = gcd( Math.abs(n) , a )
+    var x = new rational(3,4)
+    var y = new rational(5,8)
+    var z = new rational(2,7)
 
-    val numer = n/b
+    var sub = x-y-z
 
-    val deno = a/b
+    println("negative of y = " + y.neg)
+    println("substrction of x, y, z = " + sub)
 
-    def this( n : Int ) = this( n , 1 )
 
-    def +( that : Rational ) :Rational = new Rational( this.num * that.denom + that.num * this.denom  , this.denom * that.denom )
 
-    def neg : Rational = new Rational( -this.num , this.denom )
+  }
 
-    def -( that : Rational ) : Rational = this + that.neg
 
-    def *( that : Rational ) : Rational = new Rational( this.num * that.num , this.denom * that.denom )
 
-    def /( that : Rational ) : Rational = new Rational( this.num * that.denom , this.denom * that.num )
-
-    @Override
-    override def toString() : String = {
-
-        deno match {
-
-            case n if n==1 => num.toString
-
-            case _ => num + "/" + denom
-
-        }
-
-    }
 }
